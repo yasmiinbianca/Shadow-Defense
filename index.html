@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shadow Defense - Tower Defense, Clicker & Idle Game</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- =========================================================================
+       1. TELA DE CARREGAMENTO
+       ========================================================================= -->
+  <section id="screen-loading" class="game-screen active">
+    <div class="loading-logo-box">
+      <div class="loading-crystal-emblem">💎</div>
+      <h1 class="game-title">SHADOW DEFENSE</h1>
+      <p class="game-subtitle">TOWER DEFENSE &bull; CLICKER &bull; IDLE</p>
+    </div>
+    <div class="loading-bar-wrapper">
+      <div id="loading-bar-fill" class="loading-bar-fill"></div>
+    </div>
+    <p id="loading-tip-text" class="loading-tip">Invocando as energias arcanas do Cristal Sombrio...</p>
+  </section>
+
+  <!-- =========================================================================
+       2. TELA INICIAL (MENU PRINCIPAL)
+       ========================================================================= -->
+  <section id="screen-menu" class="game-screen">
+    <div class="menu-container">
+      <div class="loading-crystal-emblem">💎</div>
+      <h1 class="game-title">SHADOW DEFENSE</h1>
+      <p class="game-subtitle">A DEFESA ETERNA DAS SOMBRAS</p>
+      
+      <div class="menu-buttons-list">
+        <button id="btn-play" class="btn-action btn-gold">⚔️ JOGAR AGORA</button>
+        <button id="btn-profile" class="btn-action">👤 PERFIL &amp; STATUS</button>
+        <button id="btn-achievements" class="btn-action">🏆 CONQUISTAS</button>
+        <button id="btn-instructions" class="btn-action">📜 INSTRUÇÕES</button>
+        <button id="btn-credits" class="btn-action">✨ CRÉDITOS</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       3. TELA DE INSTRUÇÕES
+       ========================================================================= -->
+  <section id="screen-instructions" class="game-screen">
+    <button class="btn-action btn-back-menu">◀ Menu Principal</button>
+    <div class="screen-scrollable-content">
+      <h2 class="screen-header-title">📜 Manual do Guardião Sombrio</h2>
+      
+      <div class="guide-section">
+        <h3>💎 A Mecânica Principal: O Cristal Sombrio (Clicker)</h3>
+        <p>No lado esquerdo da tela de jogo, repousa o <strong>Cristal Sombrio</strong>. Clicar repetidamente no cristal é a sua forma mais veloz de acumular ouro para financiar suas defesas. Quanto mais rápido você clica, maior é a sua sequência de combo!</p>
+        <ul>
+          <li><strong>Combos de Cliques:</strong> Atingir sequências de 10, 25, 50, 100, 250 e 500 cliques concede multiplicadores avassaladores (até +500% de ouro por clique). Ficar alguns segundos sem clicar faz a barra de combo esvaziar.</li>
+          <li><strong>Cliques Críticos:</strong> Inicialmente você tem 5% de chance de causar um Acerto Crítico (5x o ouro normal), com relâmpagos e efeitos especiais.</li>
+        </ul>
+      </div>
+
+      <div class="guide-section">
+        <h3>⚙️ Geração Automática (Idle) &amp; Árvore de Economia</h3>
+        <p>Gere riqueza passiva constante construindo estruturas sombrias (Mineradores, Poços Arcanos, Tesouros, Bancos Sombrios e Portais). Na aba <strong>Árvore de Economia</strong>, você desbloqueia talentos permanentes para aumentar a chance crítica, tempo de retenção do combo e eficiência dos geradores.</p>
+      </div>
+
+      <div class="guide-section">
+        <h3>🛡️ Tower Defense &amp; Posicionamento Estratégico</h3>
+        <p>Inimigos surgem do vórtice das trevas e marcham pelo caminho maldito em direção à sua Fortaleza. Você possui <strong>100 Vidas</strong>. Cada criatura que alcançar o fim do caminho causa dano à sua base. Se a vida atingir 0, a partida termina.</p>
+        <ul>
+          <li><strong>Plataformas Rúnicas:</strong> Clique nas plataformas circulares ao redor do caminho para construir defesas táticas.</li>
+          <li><strong>Evolução:</strong> Clique em qualquer torre posicionada para abrir o painel de inspeção: veja o dano, alcance, cadência, promova upgrades ou venda a torre.</li>
+          <li><strong>Prioridade de Alvos:</strong> Alterne entre Primeiro, Último, Mais Forte ou Mais Fraco.</li>
+        </ul>
+      </div>
+
+      <div class="guide-section">
+        <h3>🌈 Raridades &amp; Tipos de Torres</h3>
+        <p>As defesas possuem raridades cromáticas distintas: <strong>Comum</strong> (cinza), <strong>Incomum</strong> (verde), <strong>Rara</strong> (azul), <strong>Épica</strong> (roxa), <strong>Lendária</strong> (dourada) e <strong>Mítica</strong> (rubi). Conforme você sobe de nível, novas defesas são desbloqueadas: Pistola, Espinhos, Rifle Sniper, Fogueira Mística, Torre Elétrica em Cadeia, Torre de Gelo (desacelera inimigos), Dentes de Alho Sagrado, Canhões Explosivos, Orbe Lendário e Núcleo Mítico.</p>
+      </div>
+
+      <div class="guide-section">
+        <h3>👑 Ondas &amp; Chefes Poderosos</h3>
+        <p>A cada 10 ondas concluídas (Onda 10, 20, 30, 40, 50...), um terrível Chefe invade o campo com tamanho agigantado, barras de vida monumentais e auras sombrias. Derrotá-los rende fortunas em ouro e toneladas de XP!</p>
+      </div>
+
+      <div class="guide-section">
+        <h3>🎲 Aba de Bônus: 5 Minigames</h3>
+        <p>Ganhe tickets ao subir de nível e jogue os minigames da aba BÔNUS: <strong>Roleta da Sorte</strong>, <strong>Raspadinha Mística</strong>, <strong>Jogo da Memória</strong>, <strong>Escolha um Baú</strong> e o teste de <strong>Clique Rápido</strong> para multiplicar suas moedas!</p>
+      </div>
+
+      <div class="guide-section">
+        <h3>⌨️ Atalhos de Teclado</h3>
+        <ul>
+          <li><strong>Barra de Espaço:</strong> Iniciar próxima onda</li>
+          <li><strong>Teclas 1, 2, 3:</strong> Alternar velocidade do jogo (1x, 2x, 3x)</li>
+          <li><strong>Tecla M:</strong> Ligar/Desligar Música ambiente</li>
+          <li><strong>Tecla S:</strong> Ligar/Desligar Efeitos Sonoros</li>
+          <li><strong>Tecla ESC:</strong> Fechar qualquer janela modal aberta</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       4. TELA DE PERFIL
+       ========================================================================= -->
+  <section id="screen-profile" class="game-screen">
+    <button class="btn-action btn-back-menu">◀ Menu Principal</button>
+    <div class="screen-scrollable-content">
+      <h2 class="screen-header-title">👤 Perfil &amp; Estatísticas do Defensor</h2>
+
+      <div style="background: var(--bg-card); padding: 18px; border-radius: 10px; border: 1px solid var(--border-subtle); margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span style="font-size: 18px; font-weight: 700; color: var(--accent-gold);" id="prof-level">Nível 1</span>
+          <span style="font-size: 13px; color: var(--accent-purple-glow);" id="prof-xp">0 / 80 XP</span>
+        </div>
+        <div class="hud-bar-bg" style="height: 12px;">
+          <div id="prof-xp-bar" class="hud-xp-bar" style="width: 0%;"></div>
+        </div>
+      </div>
+
+      <div class="profile-stats-grid">
+        <div class="profile-stat-box">
+          <span class="stat-label">Recorde de Onda</span>
+          <span class="stat-value" id="prof-wave-record">1</span>
+        </div>
+        <div class="profile-stat-box">
+          <span class="stat-label">Total de Moedas Obtidas</span>
+          <span class="stat-value" id="prof-total-coins">500</span>
+        </div>
+        <div class="profile-stat-box">
+          <span class="stat-label">Cliques no Cristal</span>
+          <span class="stat-value" id="prof-total-clicks">0</span>
+        </div>
+        <div class="profile-stat-box">
+          <span class="stat-label">Maior Combo Alcançado</span>
+          <span class="stat-value" id="prof-max-combo">0x</span>
+        </div>
+        <div class="profile-stat-box">
+          <span class="stat-label">Monstros Eliminados</span>
+          <span class="stat-value" id="prof-kills">0</span>
+        </div>
+        <div class="profile-stat-box">
+          <span class="stat-label">Chefes Abatidos</span>
+          <span class="stat-value" id="prof-bosses">0</span>
+        </div>
+        <div class="profile-stat-box">
+          <span class="stat-label">Tempo Total Jogado</span>
+          <span class="stat-value" id="prof-time">0m 0s</span>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 14px; margin-top: 24px;">
+        <button id="btn-manual-save" class="btn-action btn-gold">💾 Salvar Progresso Agora</button>
+        <button id="btn-reset-save" class="btn-action btn-red">⚠️ Resetar Todo o Progresso</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       5. TELA PRINCIPAL DO JOGO (TOWER DEFENSE + CLICKER + GESTÃO)
+       ========================================================================= -->
+  <section id="screen-game" class="game-screen">
+    
+    <!-- Top HUD Principal -->
+    <header class="game-top-hud">
+      <div class="hud-group">
+        <button id="btn-game-menu" class="btn-action btn-compact">☰ Menu</button>
+        <div class="hud-coins-box">🪙 <span id="hud-coins-val">500</span></div>
+        
+        <!-- Vida da Base -->
+        <div class="hud-health-meter">
+          <div class="hud-item" style="justify-content: space-between;">
+            <span>❤️ Base:</span>
+            <span id="hud-hp-text">100 / 100</span>
+          </div>
+          <div class="hud-bar-bg">
+            <div id="hud-hp-fill" class="hud-hp-bar" style="width: 100%;"></div>
+          </div>
+        </div>
+
+        <!-- Nível e XP -->
+        <div class="hud-xp-meter">
+          <div class="hud-item" style="justify-content: space-between;">
+            <span id="hud-level-val">Nv. 1</span>
+            <span id="hud-xp-text" style="font-size: 10px; color: var(--text-muted);">0 / 80 XP</span>
+          </div>
+          <div class="hud-bar-bg">
+            <div id="hud-xp-fill" class="hud-xp-bar" style="width: 0%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Informações da Onda -->
+      <div class="hud-group">
+        <div class="hud-item">
+          <span>⚔️ Onda:</span>
+          <strong id="hud-wave-val" class="stat-val-highlight">1</strong>
+        </div>
+        <div class="hud-item">
+          <span>👾 Inimigos:</span>
+          <span id="hud-enemies-val">0</span>
+        </div>
+        <div class="hud-item">
+          <span>👑 Chefe:</span>
+          <span id="hud-next-boss-val" style="color: #facc15; font-weight: 700;">em 9 ondas</span>
+        </div>
+      </div>
+
+      <!-- Controles de Jogo e Áudio -->
+      <div class="hud-group">
+        <button id="btn-start-wave" class="btn-action btn-gold btn-compact">⚔️ Iniciar Onda 1</button>
+        <button id="btn-auto-wave" class="btn-action btn-compact">Auto-Onda: DESLIGADO</button>
+        <button id="btn-speed-toggle" class="btn-action btn-compact">1x ⏩</button>
+        <button id="btn-toggle-sfx" class="btn-action btn-compact" title="Alternar SFX (S)">SFX: 🔊</button>
+        <button id="btn-toggle-music" class="btn-action btn-compact" title="Alternar Música (M)">Música: 🎵</button>
+      </div>
+    </header>
+
+    <!-- Corpo Central: Clicker Sombrio + Campo de Batalha Canvas -->
+    <div class="game-main-layout">
+      
+      <!-- Painel Lateral: CRISTAL SOMBRIO -->
+      <aside class="clicker-side-panel">
+        <div class="clicker-panel-header">CRISTAL SOMBRIO</div>
+        
+        <!-- O Cristal Místico Interativo -->
+        <div id="dark-crystal-btn" class="crystal-interactive-wrapper" title="Clique sem parar para gerar moedas!">
+          <div class="crystal-rune-glow"></div>
+          <div class="dark-crystal-core">💎</div>
+        </div>
+
+        <!-- Estatísticas do Clique -->
+        <div class="clicker-stats-card">
+          <div class="clicker-stat-row">
+            <span>Moedas por Clique:</span>
+            <span id="crystal-cpc-val" class="stat-val-highlight">1</span>
+          </div>
+          <div class="clicker-stat-row">
+            <span>Geração Ociosa:</span>
+            <span id="crystal-gps-val" style="color: var(--accent-purple-glow); font-weight: 700;">0/s</span>
+          </div>
+          <div class="clicker-stat-row">
+            <span>Acerto Crítico:</span>
+            <span id="crystal-crit-val" style="color: #f43f5e; font-weight: 700;">5% (5.0x)</span>
+          </div>
+        </div>
+
+        <!-- Medidor e Contador de Combo -->
+        <div class="combo-meter-container">
+          <div class="combo-header-box">
+            <span>Combo: <strong id="combo-counter-val" style="color: var(--accent-gold);">0x</strong></span>
+            <span id="combo-tier-name" class="combo-tier-badge"></span>
+          </div>
+          <div class="combo-bar-bg">
+            <div id="combo-progress-fill" class="combo-bar-fill"></div>
+          </div>
+        </div>
+
+        <div id="crystal-particles-container"></div>
+      </aside>
+
+      <!-- Campo de Batalha (Tower Defense Canvas) -->
+      <main class="defense-canvas-area">
+        <canvas id="defense-canvas"></canvas>
+      </main>
+    </div>
+
+    <!-- Painel Inferior de Gestão com Abas -->
+    <footer class="game-bottom-management">
+      <nav class="management-tabs-bar">
+        <button class="tab-btn active" data-tab="tab-towers">🛡️ Defesas</button>
+        <button class="tab-btn" data-tab="tab-clicks">👆 Upgrades Cristal</button>
+        <button class="tab-btn" data-tab="tab-gens">⚙️ Geradores</button>
+        <button class="tab-btn" data-tab="tab-tree">🌳 Árvore de Economia</button>
+        <button class="tab-btn" data-tab="tab-minigames">🎲 Bônus</button>
+      </nav>
+
+      <div class="tab-content-area">
+        <!-- Aba 1: Defesas -->
+        <div id="tab-towers" class="tab-content-panel active">
+          <div id="tab-towers-list" class="shop-cards-row"></div>
+        </div>
+
+        <!-- Aba 2: Upgrades de Clique -->
+        <div id="tab-clicks" class="tab-content-panel">
+          <div id="tab-clicks-list" class="shop-cards-row"></div>
+        </div>
+
+        <!-- Aba 3: Geradores Ociosos -->
+        <div id="tab-gens" class="tab-content-panel">
+          <div id="tab-gens-list" class="shop-cards-row"></div>
+        </div>
+
+        <!-- Aba 4: Árvore de Talentos Econômicos -->
+        <div id="tab-tree" class="tab-content-panel">
+          <div id="tab-tree-list" class="shop-cards-row"></div>
+        </div>
+
+        <!-- Aba 5: Minigames Bônus -->
+        <div id="tab-minigames" class="tab-content-panel">
+          <div class="shop-cards-row">
+            <!-- Card de Tickets -->
+            <div class="shop-item-card" style="border-color: var(--accent-gold); background: rgba(250, 204, 21, 0.08);">
+              <div class="item-header">
+                <span class="item-icon">🎫</span>
+                <div class="item-title-box">
+                  <div class="item-name">Tickets Disponíveis</div>
+                  <span class="rarity-badge" style="color: #facc15; background: rgba(250,204,21,0.2);">Recurso Bônus</span>
+                </div>
+              </div>
+              <p class="item-desc">Ganhe 1 ticket a cada 2 níveis alcançados para disputar prêmios extraordinários!</p>
+              <div style="font-size: 26px; font-weight: 800; color: var(--accent-gold); text-align: center; margin: 4px 0;">
+                <span id="minigames-tickets-val">3</span> 🎫
+              </div>
+            </div>
+
+            <!-- Minigame 1: Roleta da Sorte -->
+            <div class="shop-item-card">
+              <div class="item-header">
+                <span class="item-icon">🎡</span>
+                <div class="item-title-box">
+                  <div class="item-name">Roleta da Sorte</div>
+                  <span class="rarity-badge" style="color: #c084fc; background: rgba(192,132,252,0.2);">Jackpot 10k</span>
+                </div>
+              </div>
+              <p class="item-desc">Gire a grande roda do destino para faturar montantes épicos de moedas, XP e tickets extras.</p>
+              <div class="item-footer">
+                <button id="btn-open-roulette" class="btn-action btn-gold">Jogar Roleta</button>
+              </div>
+            </div>
+
+            <!-- Minigame 2: Raspadinha -->
+            <div class="shop-item-card">
+              <div class="item-header">
+                <span class="item-icon">🎟️</span>
+                <div class="item-title-box">
+                  <div class="item-name">Raspadinha Mística</div>
+                  <span class="rarity-badge" style="color: #38bdf8; background: rgba(56,189,248,0.2);">3 Iguais</span>
+                </div>
+              </div>
+              <p class="item-desc">Raspe a película prateada interativa com o cursor para desvendar 3 relíquias iguais e lucrar.</p>
+              <div class="item-footer">
+                <button id="btn-open-scratch" class="btn-action btn-gold">Jogar Raspadinha</button>
+              </div>
+            </div>
+
+            <!-- Minigame 3: Jogo da Memória -->
+            <div class="shop-item-card">
+              <div class="item-header">
+                <span class="item-icon">🃏</span>
+                <div class="item-title-box">
+                  <div class="item-name">Jogo da Memória</div>
+                  <span class="rarity-badge" style="color: #22c55e; background: rgba(34,197,94,0.2);">Raciocínio</span>
+                </div>
+              </div>
+              <p class="item-desc">Encontre os pares de runas e monstros sombrios no menor número de jogadas possível.</p>
+              <div class="item-footer">
+                <button id="btn-open-memory" class="btn-action btn-gold">Jogar Memória</button>
+              </div>
+            </div>
+
+            <!-- Minigame 4: Escolha um Baú -->
+            <div class="shop-item-card">
+              <div class="item-header">
+                <span class="item-icon">📦</span>
+                <div class="item-title-box">
+                  <div class="item-name">Escolha um Baú</div>
+                  <span class="rarity-badge" style="color: #facc15; background: rgba(250,204,21,0.2);">Sorte Pura</span>
+                </div>
+              </div>
+              <p class="item-desc">Três baús amaldiçoados estão diante de você. Um deles contém o Lendário Tesouro de Ouro.</p>
+              <div class="item-footer">
+                <button id="btn-open-chest" class="btn-action btn-gold">Abrir Baú</button>
+              </div>
+            </div>
+
+            <!-- Minigame 5: Clique Rápido -->
+            <div class="shop-item-card">
+              <div class="item-header">
+                <span class="item-icon">⚡</span>
+                <div class="item-title-box">
+                  <div class="item-name">Clique Rápido</div>
+                  <span class="rarity-badge" style="color: #f43f5e; background: rgba(244,63,94,0.2);">Teste de Velocidade</span>
+                </div>
+              </div>
+              <p class="item-desc">Clique no orbe energético freneticamente durante 10 segundos para ganhar moedas por clique!</p>
+              <div class="item-footer">
+                <button id="btn-open-speed-click" class="btn-action btn-gold">Iniciar Teste</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </section>
+
+  <!-- =========================================================================
+       6. TELA DE CONQUISTAS
+       ========================================================================= -->
+  <section id="screen-achievements" class="game-screen">
+    <button class="btn-action btn-back-menu">◀ Menu Principal</button>
+    <div class="screen-scrollable-content">
+      <h2 class="screen-header-title">🏆 Galeria de Conquistas do Abismo</h2>
+      <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 16px;">
+        Cumpra os objetivos sagrados para reivindicar tesouros maciços em moedas de ouro e experiência.
+      </p>
+      <div id="achievements-grid-list" class="achievements-grid"></div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       7. TELA DE VITÓRIA
+       ========================================================================= -->
+  <section id="screen-victory" class="game-screen">
+    <div class="endgame-modal-box">
+      <div style="font-size: 54px; margin-bottom: 10px;">👑✨</div>
+      <h2 id="victory-wave-title" class="endgame-title">ONDA SUPERADA!</h2>
+      <p style="color: #cbd5e1; font-size: 15px;">As legiões do submundo foram repelidas perante a magnitude de suas defesas!</p>
+      
+      <div class="endgame-rewards-box">
+        <div style="display: flex; justify-content: space-between;">
+          <span>Recompensa de Ouro:</span>
+          <strong id="victory-coins-val" class="stat-val-highlight">+0 🪙</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span>Experiência Conquistada:</span>
+          <strong id="victory-xp-val" style="color: var(--accent-purple-glow);">+0 XP</strong>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 12px; justify-content: center;">
+        <button id="btn-victory-continue" class="btn-action btn-gold">Continuar Defesa ⚔️</button>
+        <button class="btn-action btn-back-menu-inline btn-back-menu" style="position: static;">Menu</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       8. TELA DE GAME OVER
+       ========================================================================= -->
+  <section id="screen-gameover" class="game-screen">
+    <div class="endgame-modal-box">
+      <div style="font-size: 54px; margin-bottom: 10px;">💀🌑</div>
+      <h2 class="endgame-title">DEFESA DESTRUÍDA</h2>
+      <p id="gameover-wave-val" style="color: #cbd5e1; font-size: 15px;">A Cidadela Sombria sucumbiu ao massacre dos monstros...</p>
+      
+      <div class="endgame-rewards-box">
+        <div style="display: flex; justify-content: space-between;">
+          <span>Inimigos Aniquilados:</span>
+          <strong id="gameover-kills-val" class="stat-val-highlight">0</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span>Moedas Totais Acumuladas:</span>
+          <strong id="gameover-coins-val" style="color: var(--accent-gold);">0 🪙</strong>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 12px; justify-content: center;">
+        <button id="btn-restart-game" class="btn-action btn-gold">🔄 Tentar Novamente</button>
+        <button class="btn-action btn-back-menu-inline btn-back-menu" style="position: static;">Menu</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       9. TELA DE CRÉDITOS
+       ========================================================================= -->
+  <section id="screen-credits" class="game-screen">
+    <button class="btn-action btn-back-menu">◀ Menu Principal</button>
+    <div class="screen-scrollable-content">
+      <h2 class="screen-header-title">✨ Créditos &bull; SHADOW DEFENSE</h2>
+      
+      <div class="guide-section">
+        <h3>🎮 Identidade do Jogo</h3>
+        <p><strong>Shadow Defense</strong> é uma obra completa desenvolvida com uma fusão balanceada entre os gêneros <strong>Tower Defense</strong>, <strong>Clicker</strong>, <strong>Idle Game</strong> e <strong>Progressão Infinita</strong> com estética Dark Fantasy refinada.</p>
+      </div>
+
+      <div class="guide-section">
+        <h3>⚙️ Arquitetura Tecnológica</h3>
+        <ul>
+          <li><strong>Motor Gráfico:</strong> HTML5 Canvas 2D Rendering Engine com double buffering conceitual, feixes de laser, raios balísticos, auras pulsantes e partículas físicas dinâmicas.</li>
+          <li><strong>Motor de Áudio Procedural:</strong> Web Audio API pura, sintetizando ondas sonoras matemáticas em tempo real (tiros, explosões, impactos, coro arcanos e trilha sonora ambiente) sem depender de bibliotecas externas ou arquivos locais de áudio.</li>
+          <li><strong>Estilização &amp; Interface:</strong> CSS3 Glassmorphism avançado, paleta gótica (Obsidiana, Púrpura, Dourado Real e Aço), layout responsivo flexbox/grid.</li>
+          <li><strong>Persistência de Dados:</strong> Sistema completo de salvamento e recuperação automática com LocalStorage e suporte a ganhos ociosos offline.</li>
+        </ul>
+      </div>
+
+      <div class="guide-section">
+        <h3>🏛️ Referências e Inspirações</h3>
+        <p>Inspirado pelas consagradas estruturas de gameplay de <em>Plants vs Zombies</em>, <em>Kingdom Rush</em>, <em>Bloons TD</em> e clickers modernos contemporâneos, reinterpretadas sob uma atmosfera original de fantasia sombria.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       MODAIS INTERATIVOS
+       ========================================================================= -->
+
+  <!-- Modal 1: Seletor de Construção de Torre -->
+  <div id="modal-build-selector" class="game-modal">
+    <div class="modal-content-box">
+      <button class="modal-close-btn">&times;</button>
+      <h3 class="modal-title">🔨 Construir Defesa Sombria</h3>
+      <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 14px;">
+        Escolha uma torre defensiva para posicionar nesta plataforma rúnica:
+      </p>
+      <div id="build-options-container" class="build-options-list"></div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Inspeção e Upgrades de Torre -->
+  <div id="modal-tower-inspect" class="game-modal">
+    <div class="modal-content-box">
+      <button class="modal-close-btn">&times;</button>
+      
+      <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 12px;">
+        <span id="modal-tower-icon" style="font-size: 38px;">🔫</span>
+        <div>
+          <h3 id="modal-tower-name" class="modal-title" style="margin: 0;">Pistola Rápida</h3>
+          <span id="modal-tower-rarity" class="rarity-badge" style="color: #9ca3af;">Comum</span>
+        </div>
+      </div>
+
+      <div class="tower-inspect-grid">
+        <div class="inspect-stat">Nível: <strong id="modal-tower-level">Nível 1</strong></div>
+        <div class="inspect-stat">Dano: <strong id="modal-tower-damage">15</strong></div>
+        <div class="inspect-stat">Alcance: <strong id="modal-tower-range">110</strong></div>
+        <div class="inspect-stat">Cadência: <strong id="modal-tower-speed">1.2/s</strong></div>
+        <div class="inspect-stat" style="grid-column: span 2;">Abates Efetuados: <strong id="modal-tower-kills">0</strong></div>
+      </div>
+
+      <div class="target-select-box">
+        <span>Prioridade de Disparo:</span>
+        <select id="modal-tower-target-select">
+          <option value="first">Primeiro (Mais Avançado)</option>
+          <option value="last">Último (Retaguarda)</option>
+          <option value="strong">Mais Forte (Maior Vida)</option>
+          <option value="weak">Mais Fraco (Menor Vida)</option>
+        </select>
+      </div>
+
+      <div class="tower-inspect-actions" style="margin-top: 14px;">
+        <button id="modal-tower-upgrade-btn" class="btn-action btn-gold">Melhorar Torre</button>
+        <button id="modal-tower-sell-btn" class="btn-action btn-red">Vender Torre</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Minigames Bônus -->
+  <div id="modal-minigames" class="game-modal">
+    <div class="modal-content-box" style="width: 580px;">
+      <button class="modal-close-btn">&times;</button>
+
+      <!-- View Roleta -->
+      <div id="minigame-roulette-view" class="minigame-view">
+        <h3 class="modal-title">🎡 Roleta da Sorte Arcana</h3>
+        <p style="color: var(--text-muted); font-size: 13px; text-align: center;">
+          Gire a roleta para concorrer ao cobiçado Jackpot de 10.000 moedas de ouro!
+        </p>
+        <div class="roulette-wrapper">
+          <canvas id="roulette-canvas"></canvas>
+        </div>
+        <button id="spin-roulette-btn" class="btn-action btn-gold" style="width: 240px;">Girar Roleta (1 Ticket 🎫)</button>
+      </div>
+
+      <!-- View Raspadinha -->
+      <div id="minigame-scratch-view" class="minigame-view">
+        <h3 class="modal-title">🎟️ Raspadinha Mística</h3>
+        <p style="color: var(--text-muted); font-size: 13px; text-align: center;">
+          Arraste o mouse ou passe o dedo sobre o cartão para raspar e revelar os 6 símbolos!
+        </p>
+        <div class="scratch-container">
+          <div id="scratch-hidden-grid" class="scratch-hidden-grid"></div>
+          <canvas id="scratch-canvas"></canvas>
+        </div>
+        <button id="new-scratch-btn" class="btn-action btn-gold" style="width: 240px; margin-top: 12px;">Nova Raspadinha (1 Ticket 🎫)</button>
+      </div>
+
+      <!-- View Jogo da Memória -->
+      <div id="minigame-memory-view" class="minigame-view">
+        <h3 class="modal-title">🃏 Jogo da Memória Rúnica</h3>
+        <p style="color: var(--text-muted); font-size: 13px; text-align: center; margin-bottom: 10px;">
+          Encontre os 6 pares correspondentes de símbolos sombrios para ganhar seu bônus!
+        </p>
+        <div id="memory-cards-grid" class="memory-grid"></div>
+      </div>
+
+      <!-- View Escolha um Baú -->
+      <div id="minigame-chest-view" class="minigame-view">
+        <h3 class="modal-title">📦 Os Três Baús da Fortuna</h3>
+        <p style="color: var(--text-muted); font-size: 13px; text-align: center; margin-bottom: 10px;">
+          Selecione 1 dos 3 baús para abrir e resgatar o tesouro oculto (Custa 1 Ticket 🎫):
+        </p>
+        <div id="chests-container" class="chests-flex"></div>
+      </div>
+
+      <!-- View Clique Rápido -->
+      <div id="minigame-speed-view" class="minigame-view">
+        <h3 class="modal-title">⚡ Desafio do Clique Rápido</h3>
+        <p style="color: var(--text-muted); font-size: 13px; text-align: center;">
+          Clique no orbe energético o máximo de vezes que conseguir em 10 segundos!
+        </p>
+        <div class="speed-click-wrapper">
+          <div id="speed-click-timer" class="stat-value" style="font-size: 32px; color: var(--accent-red);">10.0s</div>
+          <div id="speed-click-orb" class="speed-orb">⚡</div>
+          <div class="stat-label">Cliques Realizados: <span id="speed-click-count" class="stat-val-highlight" style="font-size: 20px;">0</span></div>
+          <button id="start-speed-click-btn" class="btn-action btn-gold" style="width: 240px;">Iniciar Teste (1 Ticket 🎫)</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Container de Toasts / Notificações Flutuantes -->
+  <div id="toast-container"></div>
+
+  <!-- Scripts do Jogo em Ordem de Dependência -->
+  <script src="js/data.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/clicker.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/minigames.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
